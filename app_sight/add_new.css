@@ -60,3 +60,27 @@ body {
 h1 {
     text-align: center;
 }
+
+.popup {
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 30vw;
+    width: 40dvw;
+    height: 20dvw;
+    min-width: fit-content;
+    min-height: fit-content;
+    padding: 0 1rem 2rem 1rem;
+    border-radius: 16px;
+}
+
+.popup .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+}
+
+.hide {
+    display: none;
+}

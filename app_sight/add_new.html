@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta charset="utf-8">
-    <script defer src="index.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <script defer src="add_new.js"></script>
+    <link rel="stylesheet" href="add_new.css">
     <title>Display Webcam Stream</title>
 </head>
 <body>
 
-<h1>Identifing objects</h1>
+<h1>Add a new item</h1>
+<div style="background-color: red; z-index: 2" class="popup">
+    <h2>
+        Name the item
+    </h2>
+    <div class="form">
+        <label for="item-name">Name:</label>
+        <input type="text" id="item-name">
+        <button id="name-submit" aria-label="submit name" onclick="popup()">Submit</button>
+    </div>
+</div>
 <div id="container">
     <video autoplay="true" id="videoElement">
 
@@ -20,7 +30,7 @@
 <div class="bottom-control">
     <a id="open-items" aria-label="Open List of Items" href="items.html">OPEN CATEGORIES</a>
     <button id="capture" onclick="captureImage()" aria-label="Capture"></button>
-    <div></div>
+    <a id="done" href="index.html">Done</a>
 </div>
 
 <canvas id="save-canvas"></canvas>

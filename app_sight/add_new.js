@@ -1,3 +1,4 @@
+let item_name = ""
 let videoCtr = document.querySelector("#videoElement");
 
 if (navigator.mediaDevices.getUserMedia) {
@@ -23,4 +24,10 @@ function captureImage() {
     // data url of the image
     console.log(image_data_url);
 
+}
+
+function popup() {
+    let popup = document.getElementsByClassName("popup")[0];
+    popup.classList.toggle("hide");
+    item_name = document.getElementById("item_name").value;
 }

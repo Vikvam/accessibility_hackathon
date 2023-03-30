@@ -1,0 +1,42 @@
+body {
+    margin: 0
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+nav a {
+    flex-basis: 15%;
+}
+
+body {
+
+    background-color: #342e2e;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li {
+    margin: 2rem 1rem;
+    background-color: black;
+    padding: 1rem;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
