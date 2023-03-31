@@ -1,5 +1,5 @@
 window.addEventListener("load", (event) => {
-    fetch(window.location.origin + "/categories/", {
+    fetch("https://" + window.location.hostname + ":8000" + "/categories/", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

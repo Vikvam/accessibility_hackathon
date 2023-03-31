@@ -10,7 +10,7 @@ import ssl
 HOST = '192.168.1.100'
 PORT = 8000
 Handler = http.server.SimpleHTTPRequestHandler
-with http.server.HTTPServer(("0.0.0.0", 8000), Handler) as httpd:
+with http.server.HTTPServer(("0.0.0.0", 9000), Handler) as httpd:
     print("Web Server listening at => " + HOST + ":" + str(PORT))
     sslcontext = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     sslcontext.load_cert_chain(keyfile="ca_key.pem", certfile="ca_cert.pem")

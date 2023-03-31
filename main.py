@@ -98,4 +98,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app)
+
+    uvicorn.run(
+        'main:app', port=8000, host='0.0.0.0',
+        reload=True, reload_dirs=['html_files'],
+        ssl_keyfile='app_sight/ca_key.pem',
+        ssl_certfile='app_sight/ca_cert.pem')

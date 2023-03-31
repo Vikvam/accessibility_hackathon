@@ -23,7 +23,7 @@ function captureImage() {
     // data url of the image
     console.log(image_data_url);
 
-    fetch(window.location.origin + "/get/", {
+    fetch("https://" + window.location.hostname + ":8000" + "/get/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
