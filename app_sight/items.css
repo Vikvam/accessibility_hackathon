@@ -17,6 +17,7 @@ button {
 nav {
     display: grid;
     grid-template: auto / 1fr 3fr 1fr;
+    justify-items: center;
     align-items: center;
     color: white;
     background-color: black;
@@ -45,15 +46,15 @@ ul {
 
 li {
     margin: 2rem 1rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
     background-color: black;
-    padding: 1rem;
     border-radius: .75rem;
 }
 
-.item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+li h2 {
+    font-size: 1.1rem;
 }

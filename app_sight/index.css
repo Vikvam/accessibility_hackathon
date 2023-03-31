@@ -26,9 +26,10 @@ main {
 }
 
 .bottom-control {
-    display: flex;
+    display: grid;
+    grid-template: auto / 1fr 3fr 1fr;
+    justify-items: center;
     align-items: center;
-    justify-content: space-around;
     text-align: center;
     top: 85dvh;
     position: fixed;
@@ -37,15 +38,14 @@ main {
 }
 
 .bottom-control * {
-    flex-shrink: 0;
-    flex-basis: 33%;
     color: white;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     text-decoration: none;
 }
 
 #capture {
+    grid-column: 2 / 3;
     height: 20dvw;
     width: 20dvw;
     border-radius: 500px;

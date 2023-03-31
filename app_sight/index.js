@@ -35,7 +35,6 @@ function captureImage() {
             // base64: image_data_url
             base64: image_data_url
         }),
-
     }).then((response) => {
         return response.json();
     }).then((data) => {

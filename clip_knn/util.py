@@ -112,7 +112,7 @@ class Database:
         return str(self.label_counter)
     
     def get_category_counter(self, label):
-        return len(os.listdir(f"{self.path}/{label}"))
+        return len(list(filter(lambda i: i.endswith(".jpg"), os.listdir(f"{self.path}/{label}"))))
 
     def add_to_category(self, label, b64_data):
         category_counter = self.get_category_counter(label)
@@ -124,9 +124,9 @@ class Database:
 
     def get_categories(self):
         d = {}
-        for ctg in os.listdir(self.path):
-            with open(f"{self.path}/{ctg}/desc.txt", 'r') as f:
-                d[ctg] = f.read().strip()
+        for label in os.listdir(self.path):
+            with open(f"{self.path}/{label}/desc.txt", 'r') as f:
+                d[label] = {"desc": f.read().strip(), "amount": self.get_category_counter(label)}
         return d
 
 

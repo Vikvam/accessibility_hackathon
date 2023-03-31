@@ -1,0 +1,36 @@
+#aiaieyes {
+  background: #FFEFBA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FFFFFF, #baefff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(155deg, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  h1 {
+    text-transform: none;
+  }
+
+  .col-2 {
+    display: grid;
+    grid: auto / 1fr 1fr;
+    gap: 2rem;
+    justify-items: center;
+    margin: 1rem;
+
+    &.tall {
+      height: 30rem;
+    }
+
+    &.small > {
+      height: 20rem;
+    }
+
+    & > * {
+        width: 20rem;
+        height: 100%;
+      }
+  }
+  img {
+    border-radius: 1rem;
+    margin: 0;
+    object-fit: cover;
+  }
+
+}

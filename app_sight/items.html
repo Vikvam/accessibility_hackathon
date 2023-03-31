@@ -13,46 +13,11 @@
 <nav>
     <a aria-label="go back" href="index.html"><</a>
     <h1>
-        List of items you have added
+        List of known items
     </h1>
     <a href="add_new.html" aria-label="add">+</a>
 </nav>
-<ul>
-    <li>
-        <div class="item">
-            <h3>Black T-Shirt</h3>
-            <span>March 31, 2023</span>
-            <button>delete</button>
-        </div>
-    </li>
-    <li>
-        <div class="item">
-            <h3>Blue Jeans</h3>
-            <span>April 1, 2023</span>
-            <button>delete</button>
-        </div>
-    </li>
-    <li>
-        <div class="item">
-            <h3>Red Hoodie</h3>
-            <span>March 30, 2023</span>
-            <button>delete</button>
-        </div>
-    </li>
-    <li>
-        <div class="item">
-            <h3>White Sneakers</h3>
-            <span>April 2, 2023</span>
-            <button>delete</button>
-        </div>
-    </li>
-    <li>
-        <div class="item">
-            <h3>Striped Dress</h3>
-            <span>March 29, 2023</span>
-            <button>delete</button>
-        </div>
-    </li>
+<ul id="known-items" onload="fill_categories()">
 </ul>
 </body>
 </html>
