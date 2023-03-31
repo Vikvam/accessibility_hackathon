@@ -6,12 +6,12 @@ if (navigator.mediaDevices.getUserMedia) {
             facingMode: "environment",
         }
     })
-        .then(function (stream) {
-            videoCtr.srcObject = stream;
-        })
-        .catch(function (err0r) {
-            console.log("Something went wrong!, " + err0r);
-        });
+    .then(function (stream) {
+        videoCtr.srcObject = stream;
+    })
+    .catch(function (err0r) {
+        console.log("Something went wrong!, " + err0r);
+    });
 }
 
 function captureImage() {
