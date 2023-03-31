@@ -10,10 +10,12 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi import status
 from fastapi.requests import Request
-from base64 import b64decode
-app = FastAPI()
+import base64
 
 from fastapi.middleware.cors import CORSMiddleware
+
+
+app = FastAPI()
 
 origins = [
     "*"
@@ -35,6 +37,7 @@ class ItemImage(BaseModel):
 
 class Image(BaseModel):
     base64: str
+    # TODO: validate the format smhw (data:image/jpeg;base64,.*)
 
 
 @app.get("/")
@@ -72,9 +75,9 @@ async def create_category(item_image: ItemImage):
 
 @app.post("/get/")
 async def inference(image: Image):
+    b64_head, b64_data = image.base64.split(",")
     with open("imageToSave.jpg", "wb") as fh:
-        fh.write(b64decode(image.base64))
-
+        fh.write(base64.b64decode(b64_data))
     return {"image": image.base64}
 
 
@@ -85,5 +88,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     content = {'status_code': 10422, 'message': exc_str, 'data': None}
     return JSONResponse(content=content, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-import uvicorn
-uvicorn.run(app)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app)
