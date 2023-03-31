@@ -24,10 +24,29 @@ function captureImage() {
     // data url of the image
     console.log(image_data_url);
 
+    fetch("http://localhost:8000/create_category/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+        cache: "no-cache",
+
+        body: JSON.stringify({
+            // base64: image_data_url
+            base64: image_data_url,
+            item_name: document.getElementById("item-name").value,
+        }),
+
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        console.log(data);
+    })
 }
 
 function popup() {
     let popup = document.getElementsByClassName("popup")[0];
     popup.classList.toggle("hide");
-    item_name = document.getElementById("item_name").value;
+    item_name = document.getElementById("item-name").value;
 }

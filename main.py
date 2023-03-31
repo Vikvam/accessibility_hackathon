@@ -14,8 +14,10 @@ import base64
 
 from fastapi.middleware.cors import CORSMiddleware
 
+import clip_knn.util as utils
 
 app = FastAPI()
+db = utils.Database("dataset")
 
 origins = [
     "*"
@@ -69,7 +71,9 @@ async def create_upload_file(file: Union[UploadFile, None] = None):
 
 @app.post("/create_category/")
 async def create_category(item_image: ItemImage):
-
+    label = db.get_category_label(item_image.item_name)
+    print(f"Create {item_image.item_name} as {label}")
+    db.add_to_category(label, item_image.base64.split(",")[1])
     return {"item_image": item_image}
 
 
@@ -78,6 +82,8 @@ async def inference(image: Image):
     b64_head, b64_data = image.base64.split(",")
     with open("imageToSave.jpg", "wb") as fh:
         fh.write(base64.b64decode(b64_data))
+    desc = db.model.predict("imageToSave.jpg").description
+    print(desc)
     return {"image": image.base64}
 
 
