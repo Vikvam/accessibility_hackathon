@@ -1,5 +1,8 @@
 This is a script for a hackathon presentation about a soultion for visually-impaired people
 
+
+OS suggestions in { } , comments in { } and italic.
+
 ## Hook
 
 Tasks that take seconds for sighted people, can take several minutes for visually-impaired.
@@ -13,7 +16,9 @@ The issues visually-impaired have, that sighted people first think of such as
 - a tenhle
 
 are mostly dealt with. But the problems we are focusing on, are not that obvious.
+
 Things like picking the right clothes from the closet? or differentiating between different packaged-goods.
+
 
 It's things that sighted people don't even think about
 
@@ -58,10 +63,12 @@ collection. With this we are able to achieve 97% accuracy on our test dataset.
 ---
 Závěr
 
-There is no other app that does this. By recognizing only user-owned objects
+There is no other app that does this {solves this problem?}. By recognizing only user-owned objects
 we enable the visually impaired to recognize
 everyday objects with the same ease as sighted people.
 
+{We demonstrated how this could work using our prototype, where the user first label their items and
+it enables them recognize it afterwards.}
 We created a working prototype, ... nevím
 
 As we discussed with "names" this is something that visually impaired people are missing. 
