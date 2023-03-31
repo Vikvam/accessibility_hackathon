@@ -23,4 +23,23 @@ function captureImage() {
     // data url of the image
     console.log(image_data_url);
 
+    fetch("http://localhost:8000/get/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+        cache: "no-cache",
+
+        body: JSON.stringify({
+            // base64: image_data_url
+            base64: image_data_url
+        }),
+
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        console.log(data);
+    })
+
 }
