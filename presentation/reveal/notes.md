@@ -11,13 +11,13 @@ we are ajajajs and we are here to solve this problem.
 
 ## Problems
 
-The issues visually-impaired have, that sighted people first think of such as
+Solutions for the issues of visually-impaired people are very often
+detached from reality. They are solutions that sound good but in practice
+are useless.
 
-- crossing the road
-- a tenhle
-- a tenhle
+what can I do with the information, that there is a tree
 
-are mostly dealt with. But the problems *we* are focusing on, are not that obvious.
+But the problems *we* are focusing on, are not that obvious but very needed.
 
 Things like 
 picking the right clothes from the closet
