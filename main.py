@@ -69,7 +69,7 @@ async def create_upload_file(file: Union[UploadFile, None] = None):
 
 @app.post("/create_category/")
 async def create_category(item_image: ItemImage):
-    print(item_image)
+
     return {"item_image": item_image}
 
 
