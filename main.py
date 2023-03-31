@@ -75,7 +75,6 @@ async def create_upload_file(file: Union[UploadFile, None] = None):
 @app.post("/create_category/")
 async def create_category(item_image: ItemImage):
     label = db.get_category_label(item_image.item_name)
-    print(f"Create {item_image.item_name} as {label}")
     db.add_to_category(label, item_image.base64.split(",")[1])
     return {"item_image": item_image}
 
