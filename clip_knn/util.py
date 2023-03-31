@@ -109,7 +109,7 @@ class Database:
         with open(f"{self.path}/{label}/{category_counter}.pickle", "wb") as f:
             pickle.dump(img_embedding, f)
 
-    def get_all_embeddings(self):
+    def get_all_embeddings(self) -> tuple[list[np.array], list[str]]:
         X = []
         y = []
         for label in os.listdir(self.path):

@@ -6,6 +6,11 @@ body {
     color: white;
 }
 
+main {
+    position: relative;
+}
+
+
 #container {
     width: 100vh;
     height: 100vw;
@@ -23,7 +28,8 @@ body {
 .bottom-control {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    text-align: center;
     top: 85dvh;
     position: fixed;
     height: 15dvh;
@@ -33,6 +39,10 @@ body {
 .bottom-control * {
     flex-shrink: 0;
     flex-basis: 33%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
 }
 
 #capture {

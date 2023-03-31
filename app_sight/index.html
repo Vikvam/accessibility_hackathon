@@ -10,18 +10,19 @@
 </head>
 <body>
 
-<h1>Identifing objects</h1>
-<div id="container">
-    <video autoplay="true" id="videoElement">
+<main>
+    <h1>Identifing objects</h1>
+    <div id="container">
+        <video autoplay="true" id="videoElement" aria-description="">
+        </video>
+    </div>
 
-    </video>
-</div>
-
-<div class="bottom-control">
-    <a id="open-items" aria-label="Open List of Items" href="items.html">OPEN CATEGORIES</a>
-    <button id="capture" onclick="captureImage()" aria-label="Capture"></button>
-    <div></div>
-</div>
+    <div class="bottom-control">
+        <a id="open-items" aria-label="Open List of Items" href="items.html">OPEN CATEGORIES</a>
+        <button id="capture" onclick="captureImage()"></button>
+        <div></div>
+    </div>
+</main>
 
 <canvas id="save-canvas"></canvas>
 <script>

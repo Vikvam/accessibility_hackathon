@@ -10,33 +10,34 @@
 </head>
 <body>
 
-<h1>Add a new item</h1>
-<div style="background-color: red; z-index: 2" class="popup">
-    <h2>
-        Name the item
-    </h2>
-    <div class="form">
-        <label for="item-name">Name:</label>
-        <input type="text" id="item-name">
-        <button id="name-submit" aria-label="submit name" onclick="popup()">Submit</button>
+<main>
+    <header>
+        <nav>
+            <a aria-label="go back" href="items.html"><</a>
+            <h1>Add a new item</h1>
+        </nav>
+        <div class="popup">
+            <h2>Name the item</h2>
+            <div class="form">
+                <label for="item-name">Name of the item:</label>
+                <input type="text" id="item-name">
+                <button id="name-submit" aria-label="Submit item name." onclick="submit_item_name()">Submit</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="container">
+        <video autoplay="true" id="videoElement">
+        </video>
     </div>
-</div>
-<div id="container">
-    <video autoplay="true" id="videoElement">
 
-    </video>
-</div>
-
-<div class="bottom-control">
-    <a id="open-items" aria-label="Open List of Items" href="items.html">OPEN CATEGORIES</a>
-    <button id="capture" onclick="captureImage()" aria-label="Capture"></button>
-    <a id="done" href="index.html">Done</a>
-</div>
-
+    <nav class="bottom-control">
+        <a id="open-items" aria-label="Open List of Items" href="items.html">OPEN CATEGORIES</a>
+        <button id="capture" onclick="captureImage()" aria-label="Capture"></button>
+        <a id="done" href="index.html">Done</a>
+    </nav>
+</main>
 <canvas id="save-canvas"></canvas>
-<script>
-
-</script>
 
 </body>
 </html>

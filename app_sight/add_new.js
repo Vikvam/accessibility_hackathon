@@ -1,4 +1,3 @@
-let item_name = ""
 let videoCtr = document.querySelector("#videoElement");
 
 if (navigator.mediaDevices.getUserMedia) {
@@ -45,8 +44,6 @@ function captureImage() {
     })
 }
 
-function popup() {
-    let popup = document.getElementsByClassName("popup")[0];
-    popup.classList.toggle("hide");
-    item_name = document.getElementById("item-name").value;
+function submit_item_name() {
+    document.getElementsByClassName("popup")[0].style.display = "none";
 }
