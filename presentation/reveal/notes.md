@@ -16,9 +16,11 @@ The issues visually-impaired have, that sighted people first think of such as
 - a tenhle
 
 are mostly dealt with. But the problems we are focusing on, are not that obvious.
-Things like picking the right clothing (clothes from wardrobe? {*Sounds good*}) or differentiating between different(ly? {*they're packeged the smae way*}) packaged-goods.
 
-přidat sem, že nás to ani nenapadne
+Things like picking the right clothes from the closet? or differentiating between different packaged-goods.
+
+
+It's things that sighted people don't even think about
 
 [//]: # (While these things may be a routine for sighted people,)
 
@@ -31,16 +33,22 @@ Imagine differentiating between these T-shirts without your sight. Could you do 
 So, why isn't this solved yet? Well, one might think that this would be solved
 by the generic image recognition applications. But these solutions don't work well.
 
-Due to their generality they *can't* give information that is precise enough. For example
-if you want to distinguish between two yellow T-shirts the information that the T-shirts
-we are holding is not enough. Or worse it can tell you it's a women in a yellow dress.
+Due to their generality they *can't* give information that is precise enough.
+
+> Víc emphasise že to fakt nejde
+
+For example
+if you want to distinguish between two T-shirts the information that the T-shirts
+are yellow is not enough. Or worse it can tell you it's a woman in a yellow dress.
 
 ----
 
 We come with a solution. PAUSE
 
 Instead of distinguishing between all the objects in the world we focus only on the things
-that the user owns. With this we can achieve the precision that is needed. Let's see how
+that the user owns. With this we can achieve the precision that is needed.
+
+Let's see how
 this works.
 
 A TADY BUDE DEMO
