@@ -13,7 +13,7 @@ The issues visually-impaired have, that sighted people first think of such as
 - a tenhle
 
 are mostly dealt with. But the problems we are focusing on, are not that obvious.
-Things like picking the right clothing or differentiating between different packaged-goods.
+Things like picking the right clothing (clothes from wardrobe?) or differentiating between different(ly?) packaged-goods.
 
 přidat sem, že nás to ani nenapadne
 
@@ -52,7 +52,7 @@ collection. With this we are able to achieve 97% accuracy on our test dataset.
 ---
 Závěr
 
-There is no other app that does this. By recognizing only user-owned obejcts
+There is no other app that does this. By recognizing only user-owned objects
 we enable the visually impaired to recognize
 everyday objects with the same ease as sighted people.
 
