@@ -122,6 +122,13 @@ class Database:
         with open(f"{self.path}/{label}/{category_counter}.pickle", "wb") as f:
             pickle.dump(img_embedding, f)
 
+    def get_categories(self):
+        d = {}
+        for ctg in os.listdir(self.path):
+            with open(f"{self.path}/{ctg}/desc.txt", 'r') as f:
+                d[ctg] = f.read().strip()
+        return d
+
 
 if __name__ == "__main__":
     print(get_embeddings(["ClothesDataset/v2/1_0.jpg"]))
