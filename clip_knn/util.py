@@ -6,6 +6,7 @@ from PIL import Image
 from sklearn.neighbors import KNeighborsClassifier
 import os
 import base64
+import pickle
 from sklearn.exceptions import NotFittedError
 
 
@@ -65,7 +66,6 @@ class Model:
         try:
             p = self.knn.predict([embs])
         except NotFittedError as e:
-
             self.get_train_data(self.train_path)
             p = self.knn.predict([embs])
         with open(train_path + '/' + p[0] + '/desc.txt', 'r') as f:
@@ -105,7 +105,19 @@ class Database:
         category_counter = self.get_category_counter(label)
         with open(f"{self.path}/{label}/{category_counter}.jpg", "wb") as f:
             f.write(base64.b64decode(b64_data))
-        self.model.add_label_data(self.path, label, True)
+        img_embedding = self.model.get_embeddings([f"{self.path}/{label}/{category_counter}.jpg"])[f"{self.path}/{label}/{category_counter}.jpg"]
+        with open(f"{self.path}/{label}/{category_counter}.pickle", "wb") as f:
+            pickle.dump(img_embedding, f)
+
+    def get_all_embeddings(self):
+        X = []
+        y = []
+        for label in os.listdir(self.path):
+            for filename in filter(lambda i: i.endswith(".pickle"), os.listdir(f"{self.path}/{label}")):
+                X.append(label)
+                with open(f"{self.path}/{label}/{filename}", "rb") as f:
+                    y.append(pickle.load(f))
+        return X, y
 
 
 if __name__ == "__main__":
