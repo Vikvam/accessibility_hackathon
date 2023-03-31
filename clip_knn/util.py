@@ -22,34 +22,29 @@ class Prediction():
 class Model:
     def __init__(self, N, metric, train):
         self.train_path = train
+        self.path = train
         self.X, self.y = [], []
         self.knn = KNeighborsClassifier(N, metric=metric)
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model, self.preprocess = clip.load("ViT-B/32", device=device)
+        self.add_label_data()
         # self.knn.fit(X, y)
 
     def get_embeddings(self, filenames: list[str]) -> dict[str, np.array]:
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        model, preprocess = clip.load("ViT-B/32", device=device)
-        images = {filename: preprocess(Image.open(filename)).unsqueeze(0).to(device) for filename in filenames}
+        images = {filename: self.preprocess(Image.open(filename)).unsqueeze(0).to(device) for filename in filenames}
         with torch.no_grad():
-            images_embeds = {filename: model.encode_image(images[filename]).numpy()[0] for filename in filenames}
+            images_embeds = {filename: self.model.encode_image(images[filename]).numpy()[0] for filename in filenames}
         return images_embeds
 
-    def add_label_data(self, train_path, dr, knn_fit=False):
-        y = []
-        X = []
-        img_paths = [f"{train_path}/{dr}/{img_path}" for img_path in os.listdir(train_path + '/' + dr) if '.txt' not in img_path]
-        embs = self.get_embeddings(img_paths).values()
-        for emb in embs:
-            X.append(emb)
-        y += [dr] * len(embs)
-        self.X += X
-        self.y += y
-        if knn_fit:
+    def add_label_data(self):
+        self.X, self.y = self.get_all_embeddings()
+        if len(self.X) > 0:
             self.knn_fit()
 
     def get_train_data(self, train_path):
         for dr in os.listdir(train_path):
-            self.add_label_data(train_path, dr)
+            self.add_label_data()
         self.knn_fit()
 
     def knn_fit(self):
@@ -62,15 +57,33 @@ class Model:
         return out
 
     def predict(self, to_predict_path):
-        embs = self.get_embeddings([to_predict_path])
+        #print("HERE")
+        embs = list(self.get_embeddings([to_predict_path]).values())[0]
+        #print(to_predict_path)
+        #print(embs)
+        #print(embs.shape)
         try:
             p = self.knn.predict([embs])
         except NotFittedError as e:
             self.get_train_data(self.train_path)
             p = self.knn.predict([embs])
-        with open(train_path + '/' + p[0] + '/desc.txt', 'r') as f:
+        with open(self.train_path + '/' + p[0] + '/desc.txt', 'r') as f:
             desc = f.read().strip()
         return Prediction(desc, p)
+
+    def get_all_embeddings(self):
+        X = []
+        y = []
+        for label in os.listdir(self.path):
+            for filename in filter(lambda i: i.endswith(".pickle"), os.listdir(f"{self.path}/{label}")):
+                y.append(label)
+                with open(f"{self.path}/{label}/{filename}", "rb") as f:
+                    X.append(pickle.load(f))
+        #print(X)
+        #print(y)
+        #print("---------------")
+        return X, y
+
 
 
 class Database:
@@ -109,15 +122,12 @@ class Database:
         with open(f"{self.path}/{label}/{category_counter}.pickle", "wb") as f:
             pickle.dump(img_embedding, f)
 
-    def get_all_embeddings(self) -> tuple[list[np.array], list[str]]:
-        X = []
-        y = []
-        for label in os.listdir(self.path):
-            for filename in filter(lambda i: i.endswith(".pickle"), os.listdir(f"{self.path}/{label}")):
-                X.append(label)
-                with open(f"{self.path}/{label}/{filename}", "rb") as f:
-                    y.append(pickle.load(f))
-        return X, y
+    def get_categories(self):
+        d = {}
+        for ctg in os.listdir(self.path):
+            with open(f"{self.path}/{ctg}/desc.txt", 'r') as f:
+                d[ctg] = f.read().strip()
+        return d
 
 
 if __name__ == "__main__":

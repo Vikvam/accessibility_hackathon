@@ -46,6 +46,10 @@ class Image(BaseModel):
 def read_root():
     return {"Hello": "World"}
 
+@app.get("/categories/")
+def read_root():
+    return db.get_categories()
+
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
@@ -55,7 +59,6 @@ def read_item(item_id: int, q: Union[str, None] = None):
 @app.post("/files/")
 async def create_file(file: Annotated[bytes, File()]):
     return {"file_size": len(file)}
-
 
 @app.post("/dunno/")
 async def create_upload_file(file: Union[UploadFile, None] = None):
@@ -83,6 +86,7 @@ async def inference(image: Image):
     with open("imageToSave.jpg", "wb") as fh:
         fh.write(base64.b64decode(b64_data))
     desc = db.model.predict("imageToSave.jpg").description
+    print(desc)
     return {"image": image.base64}
 
 
