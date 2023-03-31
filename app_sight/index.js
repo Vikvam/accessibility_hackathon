@@ -38,7 +38,8 @@ function captureImage() {
     }).then((response) => {
         return response.json();
     }).then((data) => {
-        console.log(data);
+        var result = new SpeechSynthesisUtterance(data["desc"]);
+        window.speechSynthesis.speak(result);
     })
 
 }
