@@ -23,14 +23,15 @@ class Model:
         self.train_path = train
         self.X, self.y = [], []
         self.knn = KNeighborsClassifier(N, metric=metric)
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model, self.preprocess = clip.load("ViT-B/32", device=device)
         # self.knn.fit(X, y)
 
     def get_embeddings(self, filenames: list[str]) -> dict[str, np.array]:
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        model, preprocess = clip.load("ViT-B/32", device=device)
-        images = {filename: preprocess(Image.open(filename)).unsqueeze(0).to(device) for filename in filenames}
+        images = {filename: self.preprocess(Image.open(filename)).unsqueeze(0).to(device) for filename in filenames}
         with torch.no_grad():
-            images_embeds = {filename: model.encode_image(images[filename]).numpy()[0] for filename in filenames}
+            images_embeds = {filename: self.model.encode_image(images[filename]).numpy()[0] for filename in filenames}
         return images_embeds
 
     def add_label_data(self, train_path, dr, knn_fit=False):
@@ -61,14 +62,15 @@ class Model:
         return out
 
     def predict(self, to_predict_path):
-        embs = self.get_embeddings([to_predict_path])
+        embs = list(self.get_embeddings([to_predict_path]).values())[0]
+        print(embs.shape)
         try:
             p = self.knn.predict([embs])
         except NotFittedError as e:
 
             self.get_train_data(self.train_path)
             p = self.knn.predict([embs])
-        with open(train_path + '/' + p[0] + '/desc.txt', 'r') as f:
+        with open(self.train_path + '/' + p[0] + '/desc.txt', 'r') as f:
             desc = f.read().strip()
         return Prediction(desc, p)
 
