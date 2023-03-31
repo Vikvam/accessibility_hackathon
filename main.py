@@ -83,6 +83,7 @@ async def inference(image: Image):
     with open("imageToSave.jpg", "wb") as fh:
         fh.write(base64.b64decode(b64_data))
     desc = db.model.predict("imageToSave.jpg").description
+    print(desc)
     return {"image": image.base64}
 
 
